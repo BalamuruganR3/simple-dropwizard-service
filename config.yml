@@ -6,3 +6,16 @@ server:
   adminConnectors:
     - type: http
       port: 8081
+
+database:
+  driverClass: org.postgresql.Driver
+  user: myuser
+  password: "${db.password}"
+  url: jdbc:postgresql://localhost:5432/mydb
+  properties:
+    charSet: UTF-8
+  maxSize: 8
+  minSize: 2
+  checkConnectionWhileIdle: false
+  evictionInterval: 10s
+  minIdleTime: 1 minute
