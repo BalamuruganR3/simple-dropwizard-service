@@ -1,6 +1,9 @@
 package com.example;
 
+import com.example.db.UserDao;
+import com.example.db.UserEventDao;
 import com.example.resources.HelloWorldResource;
+import com.example.resources.UserResource;
 import io.dropwizard.configuration.ResourceConfigurationSourceProvider;
 import io.dropwizard.configuration.SubstitutingSourceProvider;
 import io.dropwizard.core.Application;
@@ -69,6 +72,10 @@ public class HelloWorldApplication extends Application<HelloWorldConfiguration> 
         final JdbiFactory factory = new JdbiFactory();
         final Jdbi jdbi = factory.build(environment, database, "postgresql");
 
+        final UserDao userDao = jdbi.onDemand(UserDao.class);
+        final UserEventDao userEventDao = jdbi.onDemand(UserEventDao.class);
+
         environment.jersey().register(new HelloWorldResource());
+        environment.jersey().register(new UserResource(userDao, userEventDao));
     }
 }

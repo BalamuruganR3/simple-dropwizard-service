@@ -20,6 +20,16 @@ The database credentials should be managed outside of version control.
 
 2. Database connection details are configured in `config.yml`.
 
+## Domain Model and Data Access
+
+The service uses a standard DAO pattern for data access:
+
+- **Entity**: `User` in `com.example.core`.
+- **DAO**: `UserDao` in `com.example.db` using JDBI SQL Objects.
+- **Mapping**: Explicitly handled in `UserMapper` to map PostgreSQL types (like `TIMESTAMPTZ`) to Java types (`Instant`).
+
+Optimistic locking is implemented on the `users` table via a `version` column.
+
 ## Database Migrations
 
 Database migrations are managed by Flyway. 
