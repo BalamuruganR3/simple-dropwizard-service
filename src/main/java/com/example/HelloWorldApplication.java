@@ -33,10 +33,10 @@ public class HelloWorldApplication extends Application<HelloWorldConfiguration> 
     @Override
     public void initialize(Bootstrap<HelloWorldConfiguration> bootstrap) {
         final Properties properties = new Properties();
-        try (FileInputStream fis = new FileInputStream("config.properties")) {
+        try (FileInputStream fis = new FileInputStream("local.properties")) {
             properties.load(fis);
         } catch (IOException e) {
-            LOGGER.warn("Could not load config.properties, falling back to defaults/env: {}", e.getMessage());
+            LOGGER.warn("Could not load local.properties, falling back to defaults/env: {}", e.getMessage());
         }
 
         @SuppressWarnings("unchecked")

@@ -4,4 +4,6 @@ target/
 *.iml
 .DS_Store
 local.properties
-dependency-reduced-pom.xml
+Dockerfile
+.git
+.gitignore
